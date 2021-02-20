@@ -4,4 +4,4 @@ Repository based on [scrapinghub-stack-scrapy](https://github.com/scrapinghub/sc
 
 Docker at: [https://hub.docker.com/r/oizik/scrapinghub-stack-scrapy](https://hub.docker.com/r/oizik/scrapinghub-stack-scrapy)
 
-Branch: `pac-2.4-py39` Tag: `2.4-py39`
+Branch: `pac-2.4-py39` Tag: `pac-20210220`

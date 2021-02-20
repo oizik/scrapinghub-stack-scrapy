@@ -3,3 +3,5 @@
 Repository based on [scrapinghub-stack-scrapy](https://github.com/scrapinghub/scrapinghub-stack-scrapy) with Python 3.9 and Scrapy 2.4
 
 Docker at: [https://hub.docker.com/r/oizik/scrapinghub-stack-scrapy](https://hub.docker.com/r/oizik/scrapinghub-stack-scrapy)
+
+Branch: `pac-2.4-py39` Tag: `2.4-py39`

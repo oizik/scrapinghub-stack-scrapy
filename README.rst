@@ -14,7 +14,8 @@ The repository includes a set of branches to maintain different stack versions d
 
   - ``branch-1.0`` - Python 2 branch with Scrapy 1.0
   - ``branch-1.1`` - Python 2 branch with Scrapy 1.1
-  - ``branch-1.1-py3`` - Python 3 branch with Scrapy 1.1
+  - ``branch-1.8-py3`` - Python 3 branch with Scrapy 1.8
+  - ``branch-2.3`` - Python 3 branch with Scrapy 2.3 (since Scrapy 2.0 all branches are Python 3 only)
 
 
 Versioning
@@ -26,15 +27,13 @@ Versioning is done in the following manner:
 
 - major stack versions are marked with ``<scrapy version>[-pyX]`` tag.
 
-  **Note**: All tags prior to ``2.0`` used Python 2 as its default version.
-  Support for Python 2 was dropped on version ``2.0``, so from that version onwards all tags base on Python 3
-  The presence of a ``-py3`` suffix on an older tag means that specific stack uses updated Python 3 interpreter.
+  Note: For stacks up to version 2.0, lack of ``-py3`` suffix means that the stack is built using Python 2.
 
   Examples:
 
     - tag ``1.0``
-    - tag ``1.1-py3``
-    - tag ``1.6-py37``
+    - tag ``1.1``
+    - tag ``1.8-py3``
 
 - each published version of the stack is marked with ``<scrapy version>[-pyX]-<release date>`` tag
 
@@ -42,9 +41,9 @@ Versioning is done in the following manner:
 
   Examples:
 
-    - ``1.1-20160429`` refers to the stack released at 2016-04-29 with ``Scrapy 1.1``, using it's default Python interpreter (2.7 in this case).
-    - ``1.1-py3-20160804`` refers the stack released at 2016-08-04 with ``Scrapy 1.1``, using Python 3.
-    - ``2.3-20200806`` refers to the stack release on 2020-08-06 with ``Scrapy 2.3``, using it's default Python interpreter (3.8 in this case). 
+    - ``1.1-20160429`` refers to Python 2 based stack released on 2016-04-29 with ``Scrapy 1.1``
+    - ``1.8-py3-20191203`` refers to Python 3 based stack released on 2019-12-03 with ``Scrapy 1.8``
+    - ``2.0-20200325`` refers to Python 3 based stack released on 2020-03-25 with ``Scrapy 2.0``
 
 - latest version of the stack is matched with a branch name without ``branch-`` prefix with ``-latest`` suffix
 
@@ -65,6 +64,33 @@ Versioning is done in the following manner:
 All stack versions are listed correspond to a Docker image listed at:
 
 - https://hub.docker.com/r/scrapinghub/scrapinghub-stack-scrapy/tags/
+
+
+Setting up local Environment to update requirements
+==================================================
+
+1. Setup and start Docker demon
+2. Build container using Dockerfile::
+
+    docker-compose up --build -d
+    
+3. Attach to container::
+
+    docker attach scrapinghub-stack-scrapy_dev_1
+
+4. Go to app directory::
+
+    cd app
+
+5. Install pip tools::
+
+    pip install pip-tools
+
+6. run pip-compile to update requirements.txt file based on pacakge versions in requirements.in file::
+
+    pip-compile --output-file requirements.txt requirements.in
+
+7. Create PR with appropriate branch name and commit changes along with tags as per release procedure
 
 
 Release procedure
